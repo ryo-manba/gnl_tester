@@ -1,10 +1,11 @@
 #include "get_next_line.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-#define TXT1 "a1.txt"
-#define TXT2 "a2.txt"
-#define TXT3 "a3.txt"
-#define TXT4 "a4.txt"
+#define TXT1 "txt_box/a1.txt"
+#define TXT2 "txt_box/a2.txt"
+#define TXT3 "txt_box/a3.txt"
+#define TXT4 "txt_box/a4.txt"
 
 int main(int ac, char **av)
 {
@@ -39,7 +40,7 @@ int main(int ac, char **av)
 	}
 	printf("line = %s\n", line);
 	printf("return_value = %d\n", return_value);
-	system("leaks a.out");
+	system("leaks gnl");
 	close(fd);
 	return (0);
 }

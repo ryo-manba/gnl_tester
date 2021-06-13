@@ -1,10 +1,11 @@
 #include "get_next_line_bonus.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-#define TXT1 "a1.txt"
-#define TXT2 "a2.txt"
-#define TXT3 "a3.txt"
-#define TXT4 "a4.txt"
+#define TXT1 "txt_box/a1.txt"
+#define TXT2 "txt_box/a2.txt"
+#define TXT3 "txt_box/a3.txt"
+#define TXT4 "txt_box/a4.txt"
 
 int main(void)
 {
@@ -34,17 +35,18 @@ int main(void)
 
 		return_value = get_next_line(tmp, &line);
 		printf("fd = %d\n", tmp);
+		if (tmp == fd5)
+			return (0);
 		printf("line = %s\n", line);
 		printf("return_value = %d\n\n\n", return_value);
 		printf("============================================\n");
-		if (tmp == fd5)
-			return (0);
 		free(line);
+		system("leaks bonus");
 	}
 	close(fd1);
 	close(fd2);
 	close(fd3);
 	close(fd4);
-
+	system("leaks bonus");
 	return (0);
 }
