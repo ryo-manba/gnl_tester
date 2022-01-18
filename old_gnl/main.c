@@ -10,7 +10,7 @@
 int main(int ac, char **av)
 {
 	int		fd;
-	int		ret;
+	int		return_value;
 	char	*line;
 
 	if (ac == 1)
@@ -18,6 +18,7 @@ int main(int ac, char **av)
 		printf("Please select number! (1 ~ 5)\n");
 		return (0);
 	}
+
 	if (*av[1] == '1')
 		fd = open(TXT1, O_RDONLY);
 	if (*av[1] == '2')
@@ -29,14 +30,16 @@ int main(int ac, char **av)
 	if (*av[1] == '5')
 		fd = -1;
 
-	ret = get_next_line(fd);
-	while (ret != NULL)
+	return_value = get_next_line(fd, &line);
+	while (return_value == 1)
 	{
-		printf("ret = %s\n", ret);
-		free(ret);
-		ret = get_next_line(fd);
+		printf("line = %s\n", line);
+		printf("return_value = %d\n\n", return_value);
+		free(line);
+		return_value = get_next_line(fd, &line);
 	}
-	printf("ret = %s\n", ret);
+	printf("line = %s\n", line);
+	printf("return_value = %d\n", return_value);
 	system("leaks gnl");
 	close(fd);
 	return (0);

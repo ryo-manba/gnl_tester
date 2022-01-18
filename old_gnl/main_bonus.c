@@ -10,7 +10,8 @@
 int main(void)
 {
 	int		fd1, fd2, fd3, fd4, fd5;
-	char	*ret;
+	int		return_value;
+	char	*line;
 
 	fd1 = open(TXT1, O_RDONLY);
 	fd2 = open(TXT2, O_RDONLY);
@@ -32,13 +33,14 @@ int main(void)
 		if (c == '4') tmp = fd4;
 		if (c == '5') tmp = fd5;
 
-		ret = get_next_line(tmp);
+		return_value = get_next_line(tmp, &line);
 		printf("fd = %d\n", tmp);
 		if (tmp == fd5)
 			return (0);
-		printf("ret = %s\n", ret);
+		printf("line = %s\n", line);
+		printf("return_value = %d\n\n\n", return_value);
 		printf("============================================\n");
-		free(ret);
+		free(line);
 		system("leaks bonus");
 	}
 	close(fd1);
