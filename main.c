@@ -10,8 +10,7 @@
 int main(int ac, char **av)
 {
 	int		fd;
-	int		ret;
-	char	*line;
+	char	*ret;
 
 	if (ac == 1)
 	{
